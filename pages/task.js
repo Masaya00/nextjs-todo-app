@@ -5,7 +5,7 @@ import { getAllTasksData } from "../lib/tasks";
 import Task from "../components/Task";
 import useSWR from "swr";
 import StateContextProvider from "../context/StateContext";
-// import TaskForm from "../components/TaskForm";
+import TaskForm from "../components/TaskForm";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/list-task/`;
@@ -23,17 +23,17 @@ export default function TaskPage({ staticfilterdTasks }) {
   return (
     <StateContextProvider>
       <Layout title="Task page">
-        {/* <TaskForm taskCreated={mutate} /> */}
+        <TaskForm taskCreated={mutate} />
         <ul>
           {filteredTasks &&
             filteredTasks.map((task) => (
               <Task key={task.id} task={task} taskDeleted={mutate} />
             ))}
         </ul>
-        <Link href="/main-page">
+        <Link href="/main">
           <div className="flex cursor-pointer mt-12">
             <svg
-              className="w-6 h-6 mr-3"
+              className="w-6 h-6 mr-3 text-gray-800"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ export default function TaskPage({ staticfilterdTasks }) {
                 d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
               />
             </svg>
-            <span>Back to main page</span>
+            <span className="text-gray-800">Back to main page</span>
           </div>
         </Link>
       </Layout>
