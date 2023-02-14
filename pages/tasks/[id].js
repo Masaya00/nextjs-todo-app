@@ -10,30 +10,28 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function Post({ staticTask, id }) {
   const router = useRouter();
   const { data: task, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/detail-task/${id}`,
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/detail-task/${id}`,
     fetcher,
     {
       fallbackData: staticTask,
     }
   );
-
   useEffect(() => {
     mutate();
   }, []);
-
   if (router.isFallback || !task) {
     return <div>Loading...</div>;
   }
   return (
     <Layout title={task.title}>
-      <span className="mb-4 text-gray-600">
+      <span className="mb-4">
         {"ID : "}
         {task.id}
       </span>
-      <p className="mb-4 text-xl font-bold text-gray-600">{task.title}</p>
-      <p className="mb-12 text-gray-600">{task.created_at}</p>
+      <p className="mb-4 text-xl font-bold">{task.title}</p>
+      <p className="mb-12">{task.created_at}</p>
       <Link href="/task">
-        <div className="flex cursor-pointer mt-8 text-gray-800">
+        <div className="flex cursor-pointer mt-8">
           <svg
             className="w-6 h-6 mr-3"
             fill="none"
@@ -48,7 +46,7 @@ export default function Post({ staticTask, id }) {
               d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
             />
           </svg>
-          <span className="text-gray-600">Back to task-page</span>
+          <span>Back to task-page</span>
         </div>
       </Link>
     </Layout>
@@ -63,6 +61,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
+  //const { task: staticTask } = await getTaskData(params.id);
   const staticTask = await getTaskData(params.id);
   return {
     props: {

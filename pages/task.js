@@ -5,10 +5,10 @@ import { getAllTasksData } from "../lib/tasks";
 import Task from "../components/Task";
 import useSWR from "swr";
 import StateContextProvider from "../context/StateContext";
-import TaskForm from "../components/TaskForm";
+// import TaskForm from "../components/TaskForm";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/list-task/`;
+const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/list-task/`;
 
 export default function TaskPage({ staticfilterdTasks }) {
   const { data: tasks, mutate } = useSWR(apiUrl, fetcher, {
@@ -23,7 +23,7 @@ export default function TaskPage({ staticfilterdTasks }) {
   return (
     <StateContextProvider>
       <Layout title="Task page">
-        <TaskForm taskCreated={mutate} />
+        {/* <TaskForm taskCreated={mutate} /> */}
         <ul>
           {filteredTasks &&
             filteredTasks.map((task) => (
@@ -55,6 +55,7 @@ export default function TaskPage({ staticfilterdTasks }) {
 }
 export async function getStaticProps() {
   const staticfilterdTasks = await getAllTasksData();
+
   return {
     props: { staticfilterdTasks },
     revalidate: 3,
