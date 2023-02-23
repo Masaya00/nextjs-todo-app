@@ -1,17 +1,17 @@
 import Head from "next/head";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Layout({children, title='Default'}) {
   return (
-    <div className="flex justify-center items-center flex-col min-h-screen text-white font-mono bg-gray-100">
+    <div>
       <Head>
         <title>{title}</title>
       </Head>
+      <Header />
       <main className="flex flex-1 justify-center items-center w-screen flex-col">
         {children}
       </main>
-      <footer className="w-full h-6 flex justify-center items-center text-gray-500 text-sm">
-        @Udemy2023
-      </footer>
     </div>
   )
 }

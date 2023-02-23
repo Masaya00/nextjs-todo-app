@@ -36,9 +36,6 @@ export default function Auth() {
         }
       }).then((data) => {
         const options = {path: "/"};
-        console.log(`data : ${data}`);
-        console.log(`data.access : ${data.access}`);
-        console.log(`options : ${options}`);
         cookie.set("access_token", data.access, options);
         router.push("/main")
       })
@@ -79,13 +76,6 @@ export default function Auth() {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 w-2/4">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <Image
-              className="mx-auto h-12 w-auto"
-              src="/mark.svg"
-              alt="Your Company"
-              width={60}
-              height={60}
-            />
             <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-700'>
               {isLogin ? "Login" : "Sign Up"}
             </h2>
