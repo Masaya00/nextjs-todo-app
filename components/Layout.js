@@ -12,6 +12,7 @@ export default function Layout({children, title='Default'}) {
       <main className="flex flex-1 justify-center items-center w-screen flex-col">
         {children}
       </main>
+      <Footer />
     </div>
   )
 }

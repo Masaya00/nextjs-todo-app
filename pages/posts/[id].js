@@ -18,7 +18,7 @@ export default function Post({ post }) {
       <p className="mb-4 text-xl font-bold text-gray-800">{post.title}</p>
       <p className="mb-12 text-gray-800">{post.created_at}</p>
       <p className="px-10 text-gray-800">{post.content}</p>
-      <Link href="/blog">
+      <Link href="/main">
         <div className="flex cursor-pointer mt-12 text-gray-800">
           <svg
             className="w-6 h-6 mr-3"
