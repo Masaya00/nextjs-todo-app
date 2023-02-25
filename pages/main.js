@@ -9,9 +9,30 @@ const cookie = new Cookies();
 
 export default function Blog({filteredPosts}) {
   return (
-    <Layout title="Blog">
-      <div className="flex">
-        {filteredPosts && filteredPosts.map((post) => <Post key={post.id} post={post} />)}
+    <Layout title="MMMMBLOG">
+      <div className="grid grid-cols-4">
+
+        {/* トップメッセージ */}
+        <div className="col-span-4">
+          <h1 className="text-center font-bold text-5xl my-20">Webエンジニアの備忘録</h1>
+        </div>
+        {/* ブログ一覧 */}
+        <div className="grid grid-cols-3 col-span-3">
+          {filteredPosts && filteredPosts.map((post) => <Post key={post.id} post={post} />)}
+        </div>
+        {/* サブメニュー */}
+        <div className="col-span-1 row-span-2 grid">
+          <div className="border rounded-2xl mb-2">
+            <div className="font-bold text-l pt-3 pl-3 pb-3 bg-gray-100 rounded-t-2xl">
+              カテゴリー
+            </div>
+          </div>
+          <div className="border rounded-2xl">
+            <div className="font-bold text-l pt-3 pl-3 pb-3 bg-gray-100 rounded-t-2xl">
+              運営者について
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   )

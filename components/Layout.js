@@ -9,9 +9,12 @@ export default function Layout({children, title='Default'}) {
         <title>{title}</title>
       </Head>
       <Header />
-      <main className="flex flex-1 justify-center items-center w-screen flex-col">
+      <div>
+        
+      </div>
+      <div className="w-3/4 mx-auto mt-5">
         {children}
-      </main>
+      </div>
       <Footer />
     </div>
   )
